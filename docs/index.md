@@ -31,9 +31,3 @@ If Bedrock PHP feels limiting, that is by design.
 - [Chapter 10: Maintenance & Decommissioning](src/chapter10_maintenance_decommissioning.md)
 - [Chapter 11: When to Leave Bedrock PHP](src/chapter11_when_to_leave.md)
 - [Chapter 12: Version Policy](src/chapter12_version_policy.md)
-
----
-
-## Downloads
-
-- [bedrock-php-v1.0.zip](./bedrock-php-v1.0.zip) — Source markdown files
