@@ -49,6 +49,30 @@ If there is a conflict, the normative rules win.
 
 ---
 
+## Local Development
+
+To build and preview the documentation locally:
+
+```bash
+# Install dependencies
+pip install mkdocs-material
+
+# Copy source files to docs directory
+mkdir -p docs/src && cp -r src/* docs/src/
+
+# Build the documentation
+python scripts/generate-index.py
+mkdocs build -d site/dev
+
+# Serve locally
+cd site/dev
+python -m http.server 8080
+```
+
+Then open http://localhost:8080 in your browser.
+
+---
+
 ## For AI Contributors
 
 If you are an AI agent contributing to Bedrock PHP, read `AGENTS.md` first.
