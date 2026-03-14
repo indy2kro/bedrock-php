@@ -1,4 +1,4 @@
-# Bedrock PHP — v1.0
+# Bedrock PHP
 
 [**View Documentation**](https://indy2kro.github.io/bedrock-php/)
 
