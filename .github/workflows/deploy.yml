@@ -84,13 +84,25 @@ jobs:
 
       - name: Create zip archive
         run: |
-          # Copy markdown source files to the version directory (for zip download)
-          mkdir -p site/${{ steps.paths.outputs.VERSION_DIR }}/src
-          cp -r docs/src/* site/${{ steps.paths.outputs.VERSION_DIR }}/src/
-          # Create zip from the version directory (includes both built site + source markdown)
-          cd site/${{ steps.paths.outputs.VERSION_DIR }}
-          zip -r bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip . -x "*.html" "*.xml" "*.js" "*.css" "*.txt" "*.woff*" "*.ttf" "search*" "site*" "__pycache__/*"
-          cp bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip ../
+          VERSION_NAME=${{ steps.paths.outputs.VERSION_NAME }}
+          VERSION_DIR=${{ steps.paths.outputs.VERSION_DIR }}
+          
+          # Create a temp directory for zip contents
+          mkdir -p zip-temp/${VERSION_DIR}
+          
+          # Copy the built site (excluding html, but keeping assets)
+          cp -r site/${VERSION_DIR}/* zip-temp/${VERSION_DIR}/ 2>/dev/null || true
+          
+          # Copy markdown source files to src/ subdirectory in zip
+          mkdir -p zip-temp/${VERSION_DIR}/src
+          cp -r docs/src/* zip-temp/${VERSION_DIR}/src/
+          
+          # Create zip from temp directory (includes both HTML site + markdown sources)
+          cd zip-temp
+          zip -r ../bedrock-php-${VERSION_NAME}.zip . -x "*.xml" "search*" "__pycache__/*"
+          
+          # Copy zip to site for release-action to find
+          cp ../bedrock-php-${VERSION_NAME}.zip ../site/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
