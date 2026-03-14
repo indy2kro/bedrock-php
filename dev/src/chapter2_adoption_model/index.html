@@ -1,0 +1,1249 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Operational standard for building, deploying, and running PHP applications in production">
+      
+      
+      
+        <link rel="canonical" href="https://bedrock-php.github.io/bedrock-php/src/chapter2_adoption_model/">
+      
+      
+        <link rel="prev" href="../chapter1_purpose_and_scope/">
+      
+      
+        <link rel="next" href="../chapter3_core_values/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Chapter 2: Adoption Model - Bedrock PHP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bedrock-php-v10" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bedrock PHP" class="md-header__button md-logo" aria-label="Bedrock PHP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bedrock PHP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 2: Adoption Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bedrock PHP" class="md-nav__button md-logo" aria-label="Bedrock PHP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bedrock PHP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1_purpose_and_scope/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1: Purpose & Scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Adoption Model
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Adoption Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-adoption-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Adoption Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Adoption Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normative
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normative">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-adoption-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valid adoption states
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry criteria
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-pinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version pinning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obligations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obligations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prohibitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prohibitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stop rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-normative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Normative
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Normative">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-adoption-must-be-explicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why adoption must be explicit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-adoption-is-worse-than-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial adoption is worse than none
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-adopt-bedrock-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to adopt Bedrock PHP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-not-to-adopt-yet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When not to adopt (yet)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning-as-a-forcing-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning as a forcing function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-adoption-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common adoption pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-adoption-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical adoption checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3_core_values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Core Values (Operational)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4_declared_defaults/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Declared Defaults
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5_deployment_infrastructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5: Deployment & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6_configuration_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Configuration & State
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter7_observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter8_performance_scaling_limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 8: Performance & Scaling Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter9_security_posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 9: Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter10_maintenance_decommissioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 10: Maintenance & Decommissioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter11_when_to_leave/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 11: When to Leave Bedrock PHP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter12_version_policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 12: Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-adoption-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Adoption Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Adoption Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normative
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normative">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-adoption-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valid adoption states
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry criteria
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-pinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version pinning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obligations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obligations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prohibitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prohibitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stop rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-normative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Normative
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Normative">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-adoption-must-be-explicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why adoption must be explicit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-adoption-is-worse-than-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial adoption is worse than none
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-adopt-bedrock-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to adopt Bedrock PHP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-not-to-adopt-yet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When not to adopt (yet)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning-as-a-forcing-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning as a forcing function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-adoption-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common adoption pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-adoption-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical adoption checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="bedrock-php-v10">Bedrock PHP — v1.0<a class="headerlink" href="#bedrock-php-v10" title="Permanent link">&para;</a></h1>
+<h2 id="2-adoption-model">2. Adoption Model<a class="headerlink" href="#2-adoption-model" title="Permanent link">&para;</a></h2>
+<h3 id="normative">Normative<a class="headerlink" href="#normative" title="Permanent link">&para;</a></h3>
+<h4 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h4>
+<p>Adopting Bedrock PHP means explicitly committing to its constraints <strong>as a system</strong>, not as a loose set of guidelines.</p>
+<p>Bedrock PHP is adopted at the <strong>project level</strong>, not per-feature, per-team-member, or per-phase.</p>
+<h4 id="valid-adoption-states">Valid adoption states<a class="headerlink" href="#valid-adoption-states" title="Permanent link">&para;</a></h4>
+<p>A project is in exactly one of the following states:</p>
+<ol>
+<li><strong>Not using Bedrock PHP</strong></li>
+<li><strong>Using Bedrock PHP vX.Y</strong></li>
+<li><strong>Exiting Bedrock PHP vX.Y</strong> (temporary, transitional)</li>
+</ol>
+<p>There is no partial or implicit adoption.</p>
+<h4 id="entry-criteria">Entry criteria<a class="headerlink" href="#entry-criteria" title="Permanent link">&para;</a></h4>
+<p>A project may adopt Bedrock PHP when:</p>
+<ul>
+<li>there is a clear owner for the system</li>
+<li>production users or downstream systems exist (or are imminent)</li>
+<li>the team agrees to prioritize operational stability over architectural freedom</li>
+</ul>
+<p>Adoption must be <strong>explicitly recorded</strong> (e.g. in the repository README or an architecture decision record).</p>
+<h4 id="version-pinning">Version pinning<a class="headerlink" href="#version-pinning" title="Permanent link">&para;</a></h4>
+<ul>
+<li>A project must pin to a <strong>specific Bedrock PHP version</strong>.</li>
+<li>Upgrading Bedrock PHP is an intentional act, not an ambient change.</li>
+<li>A project may not claim compliance with multiple versions simultaneously.</li>
+</ul>
+<h4 id="obligations">Obligations<a class="headerlink" href="#obligations" title="Permanent link">&para;</a></h4>
+<p>By adopting Bedrock PHP, the project agrees to:</p>
+<ul>
+<li>follow all normative rules in the selected version</li>
+<li>treat declared defaults as binding unless explicitly overridden</li>
+<li>document any deviations clearly and centrally</li>
+</ul>
+<h4 id="prohibitions">Prohibitions<a class="headerlink" href="#prohibitions" title="Permanent link">&para;</a></h4>
+<ul>
+<li>No selective adoption (“we follow most of it”).</li>
+<li>No retroactive claims of compliance.</li>
+<li>No silent divergence from declared defaults.</li>
+</ul>
+<h4 id="stop-rule">Stop rule<a class="headerlink" href="#stop-rule" title="Permanent link">&para;</a></h4>
+<p>If more than one chapter requires documented deviations to operate the system, stop claiming Bedrock PHP compliance and begin an exit process.</p>
+<hr />
+<h3 id="non-normative">Non-Normative<a class="headerlink" href="#non-normative" title="Permanent link">&para;</a></h3>
+<h4 id="why-adoption-must-be-explicit">Why adoption must be explicit<a class="headerlink" href="#why-adoption-must-be-explicit" title="Permanent link">&para;</a></h4>
+<p>Most operational standards fail not because they are wrong, but because they are <strong>ambiguous</strong>.</p>
+<p>When adoption is implicit:</p>
+<ul>
+<li>teams disagree on what rules apply</li>
+<li>exceptions accumulate without being named</li>
+<li>standards become decorative rather than enforceable</li>
+</ul>
+<p>Making adoption explicit forces a clear answer to:</p>
+<blockquote>
+<p>“What rules are we actually operating under today?”</p>
+</blockquote>
+<p>That clarity is more valuable than perfect rules.</p>
+<h4 id="partial-adoption-is-worse-than-none">Partial adoption is worse than none<a class="headerlink" href="#partial-adoption-is-worse-than-none" title="Permanent link">&para;</a></h4>
+<p>A common failure mode looks like this:</p>
+<ul>
+<li>the team adopts the <em>language</em> of the standard</li>
+<li>only the convenient parts are followed</li>
+<li>the hard constraints are quietly ignored</li>
+</ul>
+<p>This produces the worst outcome:</p>
+<ul>
+<li>complexity still grows</li>
+<li>confidence falsely increases</li>
+<li>failures are harder to reason about because assumptions no longer match reality</li>
+</ul>
+<p>If a project cannot accept a rule, it is healthier to reject the standard than to pretend.</p>
+<h4 id="when-to-adopt-bedrock-php">When to adopt Bedrock PHP<a class="headerlink" href="#when-to-adopt-bedrock-php" title="Permanent link">&para;</a></h4>
+<p>Good moments to adopt:</p>
+<ul>
+<li>greenfield projects with real production intent</li>
+<li>post-MVP stabilization phases</li>
+<li>ownership transitions between teams</li>
+<li>after a significant incident that revealed operational gaps</li>
+</ul>
+<p>In these moments, constraints are usually welcomed rather than resisted.</p>
+<h4 id="when-not-to-adopt-yet">When not to adopt (yet)<a class="headerlink" href="#when-not-to-adopt-yet" title="Permanent link">&para;</a></h4>
+<p>Bedrock PHP may be premature when:</p>
+<ul>
+<li>the system is a spike or proof-of-concept</li>
+<li>infrastructure choices are the primary unknown being explored</li>
+<li>the team expects the system to be short-lived</li>
+</ul>
+<p>In these cases, defer adoption rather than dilute it.</p>
+<h4 id="versioning-as-a-forcing-function">Versioning as a forcing function<a class="headerlink" href="#versioning-as-a-forcing-function" title="Permanent link">&para;</a></h4>
+<p>Pinning a version is not bureaucracy — it is protection.</p>
+<p>It ensures:</p>
+<ul>
+<li>the rules you agreed to do not change underneath you</li>
+<li>upgrades are deliberate and reviewable</li>
+<li>disagreements can be resolved by pointing to a specific text</li>
+</ul>
+<p>Treat Bedrock PHP versions like runtime versions: upgrade intentionally, not casually.</p>
+<h4 id="common-adoption-pitfalls">Common adoption pitfalls<a class="headerlink" href="#common-adoption-pitfalls" title="Permanent link">&para;</a></h4>
+<p>Watch for these early warning signs:</p>
+<ul>
+<li>“We’ll clean this up once things settle down.”</li>
+<li>“This one exception doesn’t really count.”</li>
+<li>“Everyone knows how this works.”</li>
+</ul>
+<p>These phrases usually precede drift.</p>
+<h4 id="practical-adoption-checklist">Practical adoption checklist<a class="headerlink" href="#practical-adoption-checklist" title="Permanent link">&para;</a></h4>
+<p>Before declaring adoption:</p>
+<ul>
+<li>[ ] Name a system owner</li>
+<li>[ ] Pin a Bedrock PHP version</li>
+<li>[ ] Record adoption in the repo</li>
+<li>[ ] Identify known deviations (if any)</li>
+<li>[ ] Ensure the team understands the stop rules</li>
+</ul>
+<p>If you cannot complete this checklist honestly, wait.</p>
+<hr />
+<p><strong>Status:</strong> Draft — Chapter 2</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
