@@ -1,6 +1,6 @@
 site_name: Bedrock PHP
 site_description: Operational standard for building, deploying, and running PHP applications in production
-site_url: https://bedrock-php.github.io/bedrock-php/
+site_url: https://indy2kro.github.io/bedrock-php/
 
 theme:
   name: material

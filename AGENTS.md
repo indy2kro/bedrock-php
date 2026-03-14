@@ -13,12 +13,16 @@ This is NOT a typical PHP codebase. It contains no PHP code, no Composer depende
 ```
 bedrock-php/
 ├── README.md                    # Main entry point
-├── src/                         # Chapter documents (bedrock_php_v_1_chapter*.md)
+├── src/                         # Chapter documents (chapter*.md)
 ├── context/                     # Supporting documentation
 │   ├── bedrock_php_ai_contribution_guidelines.md
 │   ├── bedrock_php_structural_guidelines.md
 │   ├── bedrock_php_declared_defaults.md
 │   └── ... (other context files)
+├── tools/                       # AI tool integration values
+│   ├── runtime-values.md
+│   ├── config-values.md
+│   └── ... (domain-specific values)
 └── AGENTS.md                    # This file
 ```
 
