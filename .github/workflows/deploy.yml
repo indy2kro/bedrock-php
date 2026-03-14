@@ -102,4 +102,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: "bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip"
-          skipIfReleaseExists: true
+          allowUpdates: true
