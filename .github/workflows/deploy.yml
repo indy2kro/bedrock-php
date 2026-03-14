@@ -1,0 +1,90 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, 'v*']
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install mkdocs-material
+
+      - name: Determine output paths
+        id: paths
+        run: |
+          REF="${{ github.ref_name }}"
+          if [[ "$REF" == "main" ]]; then
+            echo "VERSION_DIR=dev" >> $GITHUB_OUTPUT
+            echo "VERSION_NAME=dev" >> $GITHUB_OUTPUT
+          elif [[ "$REF" == v*.* ]]; then
+            echo "VERSION_DIR=$REF" >> $GITHUB_OUTPUT
+            echo "VERSION_NAME=$REF" >> $GITHUB_OUTPUT
+          else
+            echo "VERSION_DIR=dev" >> $GITHUB_OUTPUT
+            echo "VERSION_NAME=dev" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout existing gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: sitegh-pages
+          sparse-checkout: |
+            v*
+            dev
+          sparse-checkout-cone-mode: false
+        continue-on-error: true
+
+      - name: Copy source files
+        run: mkdir -p docs/src && cp -r src/* docs/src/
+
+      - name: Generate version index
+        env:
+          VERSION_DIR: ${{ steps.paths.outputs.VERSION_DIR }}
+          SITE_GH_PAGES_PATH: sitegh-pages
+        run: python scripts/generate-index.py
+
+      - name: Build MkDocs
+        run: mkdocs build -d site/${{ steps.paths.outputs.VERSION_DIR }}
+
+      - name: Create zip archive
+        run: |
+          cd site/${{ steps.paths.outputs.VERSION_DIR }}
+          zip -r ../bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip . -x "*.html" "*.xml" "*.js" "*.css" "*.txt" "*.woff*" "*.ttf" "search*" "site*" "__pycache__/*"
+        shell: bash
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          keep_files: true
+          allow_empty_commit: true
+
+      - name: Upload zip to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
