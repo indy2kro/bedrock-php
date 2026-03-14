@@ -2,8 +2,9 @@
 """
 Generate version index for Bedrock PHP documentation.
 
-Scans existing version directories and generates an index page
-with a table of all available versions.
+Scans existing version directories and generates:
+1. docs/index.md - for MkDocs navigation
+2. site/index.html - standalone version picker for root
 """
 
 import os
@@ -51,8 +52,8 @@ def discover_versions(sitegh_pages_path: str) -> list[tuple[str, str, str]]:
     return versions
 
 
-def generate_index(versions: list[tuple[str, str, str]], current_version: str) -> str:
-    """Generate the index.md content."""
+def generate_index_md(versions: list[tuple[str, str, str]], current_version: str) -> str:
+    """Generate the index.md content for MkDocs."""
     
     # Determine status for current version
     def get_status_display(version_dir: str, status: str) -> str:
@@ -112,6 +113,136 @@ If Bedrock PHP feels limiting, that is by design.
     return index_content
 
 
+def generate_index_html(versions: list[tuple[str, str, str]], current_version: str) -> str:
+    """Generate standalone HTML version picker."""
+    
+    # Determine status for current version
+    def get_status_display(version_dir: str, status: str) -> str:
+        if version_dir == current_version:
+            return "Current"
+        elif status == "development":
+            return "WIP"
+        else:
+            return "Previous"
+    
+    # Build table rows
+    rows = []
+    for version_dir, version_display, status in versions:
+        status_display = get_status_display(version_dir, status)
+        zip_name = f"bedrock-php-{version_dir}.zip"
+        
+        rows.append(f"""        <tr>
+            <td><a href="{version_dir}/">{version_display}</a></td>
+            <td><a href="{version_dir}/{zip_name}">Download</a></td>
+            <td>{status_display}</td>
+        </tr>""")
+    
+    table_rows = "\n".join(rows)
+    
+    html = f"""<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bedrock PHP - Select a Version</title>
+    <style>
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }}
+        .container {{
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }}
+        h1 {{
+            color: #333;
+            margin-bottom: 10px;
+        }}
+        .subtitle {{
+            color: #666;
+            margin-bottom: 30px;
+        }}
+        table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }}
+        th, td {{
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }}
+        th {{
+            background: #f9f9f9;
+            font-weight: 600;
+        }}
+        a {{
+            color: #0066cc;
+            text-decoration: none;
+        }}
+        a:hover {{
+            text-decoration: underline;
+        }}
+        .description {{
+            color: #666;
+            line-height: 1.6;
+            margin-top: 30px;
+        }}
+        .description ul {{
+            margin: 10px 0;
+        }}
+        .links {{
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bedrock PHP</h1>
+        <p class="subtitle">Select a Version</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Version</th>
+                    <th>Download</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+{table_rows}
+            </tbody>
+        </table>
+        
+        <div class="description">
+            <p>Bedrock PHP is an <strong>operational standard</strong> for building, deploying, and running PHP applications in production.</p>
+            <p>It is intentionally restrictive. Its goal is to define a <strong>safe, boring, repeatable baseline</strong> that:</p>
+            <ul>
+                <li>reduces decision fatigue</li>
+                <li>minimizes accidental complexity</li>
+                <li>survives team and context changes</li>
+                <li>remains understandable months or years later</li>
+            </ul>
+            <p>If Bedrock PHP feels limiting, that is by design.</p>
+        </div>
+        
+        <div class="links">
+            <a href="https://github.com/anomalyco/bedrock-php">View on GitHub</a>
+        </div>
+    </div>
+</body>
+</html>"""
+    
+    return html
+
+
 def main():
     """Main entry point."""
     # Determine current version from git ref or environment
@@ -129,12 +260,19 @@ def main():
         if not has_dev:
             versions.insert(0, ("dev", "Dev (main)", "development"))
     
-    # Generate index
-    index_content = generate_index(versions, current_version)
+    # Generate both formats
+    index_md = generate_index_md(versions, current_version)
+    index_html = generate_index_html(versions, current_version)
     
-    # Write to docs/index.md (in current directory for mkdocs to pick up)
+    # Write docs/index.md (for MkDocs navigation)
     output_path = Path("docs") / "index.md"
-    output_path.write_text(index_content, encoding="utf-8")
+    output_path.write_text(index_md, encoding="utf-8")
+    
+    # Write site/index.html (standalone version picker)
+    # This will be copied to site/ after MkDocs build
+    site_index_path = Path("site") / "index.html"
+    site_index_path.parent.mkdir(parents=True, exist_ok=True)
+    site_index_path.write_text(index_html, encoding="utf-8")
     
     print(f"Generated index with {len(versions)} versions: {[v[0] for v in versions]}")
 

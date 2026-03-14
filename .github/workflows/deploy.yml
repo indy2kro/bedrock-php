@@ -16,12 +16,12 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout source
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
@@ -44,7 +44,7 @@ jobs:
           fi
 
       - name: Checkout existing gh-pages
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: sitegh-pages
@@ -54,17 +54,30 @@ jobs:
           sparse-checkout-cone-mode: false
         continue-on-error: true
 
+      - name: Setup site directory with existing versions
+        run: |
+          mkdir -p site/
+          # Copy existing version directories from gh-pages
+          cp -r sitegh-pages/v* site/ 2>/dev/null || true
+          cp -r sitegh-pages/dev site/ 2>/dev/null || true
+
       - name: Copy source files
         run: mkdir -p docs/src && cp -r src/* docs/src/
 
-      - name: Generate version index
+      - name: Generate version index (for MkDocs)
         env:
           VERSION_DIR: ${{ steps.paths.outputs.VERSION_DIR }}
           SITE_GH_PAGES_PATH: sitegh-pages
         run: python scripts/generate-index.py
 
-      - name: Build MkDocs
+      - name: Build MkDocs to version directory
         run: mkdocs build -d site/${{ steps.paths.outputs.VERSION_DIR }}
+
+      - name: Generate standalone version picker for root
+        env:
+          VERSION_DIR: ${{ steps.paths.outputs.VERSION_DIR }}
+          SITE_GH_PAGES_PATH: sitegh-pages
+        run: python scripts/generate-index.py
 
       - name: Create zip archive
         run: |
