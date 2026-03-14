@@ -64,6 +64,9 @@ jobs:
       - name: Copy source files
         run: mkdir -p docs/src && cp -r src/* docs/src/
 
+      - name: Replace version placeholder in source files
+        run: find docs/src -name "*.md" -exec sed -i 's/VERSION_PLACEHOLDER/${{ steps.paths.outputs.VERSION_NAME }}/g' {} \;
+
       - name: Generate version index (for MkDocs)
         env:
           VERSION_DIR: ${{ steps.paths.outputs.VERSION_DIR }}

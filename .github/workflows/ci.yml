@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install mkdocs-material
+
+      - name: Validate MkDocs config
+        run: |
+          python -c "import yaml; yaml.safe_load(open('mkdocs.yml'))"
+          echo "mkdocs.yml is valid YAML"
+
+      - name: Build docs (check for errors)
+        run: |
+          mkdir -p docs/src
+          cp -r src/* docs/src/
+          find docs/src -name "*.md" -exec sed -i 's/VERSION_PLACEHOLDER/dev/g' {} \;
+          python scripts/generate-index.py
+          mkdocs build --strict -d site/check
+
+      - name: Check for broken internal links
+        run: |
+          # Simple check: verify all linked md files exist
+          for f in docs/src/*.md; do
+            while IFS= read -r line; do
+              if [[ "$line" =~ href=\"([^\"]+)\.md\" ]]; then
+                link="${BASH_REMATCH[1]}"
+                if [[ ! -f "docs/src/$link.md" ]] && [[ ! -f "docs/src/$link" ]]; then
+                  echo "Warning: Broken link in $f: $link"
+                fi
+              fi
+            done < "$f"
+          done
+
+      - name: Check markdown files have content
+        run: |
+          for f in src/chapter*.md; do
+            lines=$(wc -l < "$f")
+            if [ "$lines" -lt 10 ]; then
+              echo "Warning: $f has very few lines ($lines)"
+            fi
+          done
+
+      - name: Check for trailing whitespace
+        run: |
+          if grep -r '[[:space:]]$' src/*.md 2>/dev/null | grep -v '.git' > /dev/null; then
+            echo "Warning: Found trailing whitespace in .md files"
+            grep -r '[[:space:]]$' src/*.md 2>/dev/null | head -5
+          fi
+
+      - name: Check version placeholder is present in source files
+        run: |
+          if grep -q "VERSION_PLACEHOLDER" src/chapter*.md; then
+            echo "VERSION_PLACEHOLDER found in source files (correct - will be replaced during build)"
+          else
+            echo "ERROR: VERSION_PLACEHOLDER not found in source files"
+            echo "Source files should use VERSION_PLACEHOLDER, not hardcoded versions"
+            exit 1
+          fi

@@ -1,4 +1,4 @@
-# Bedrock PHP — v1.0
+# Bedrock PHP — VERSION_PLACEHOLDER
 
 ## 1. Purpose & Scope
 

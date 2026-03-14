@@ -68,7 +68,7 @@ def generate_mkdocs_index(versions: list[tuple[str, str, str]], current_version:
 - [bedrock-php-{current_version}.zip](./bedrock-php-{current_version}.zip) — Source markdown files"""
     
     # Build full index content - no version table, just intro
-    index_content = f"""# Bedrock PHP — v1.0
+    index_content = f"""# Bedrock PHP — {current_version}
 
 ## What This Is
 
