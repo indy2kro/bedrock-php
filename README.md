@@ -47,6 +47,12 @@ If there is a conflict, the normative rules win.
 
 ---
 
+## For AI Contributors
+
+If you are an AI agent contributing to Bedrock PHP, read `AGENTS.md` first.
+
+---
+
 ## Adoption Rules (Read This First)
 
 A project using Bedrock PHP must:
