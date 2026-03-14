@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bedrock PHP - Select a Version</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #f9f9f9;
+            font-weight: 600;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .description {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 30px;
+        }
+        .description ul {
+            margin: 10px 0;
+        }
+        .links {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bedrock PHP</h1>
+        <p class="subtitle">Select a Version</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Version</th>
+                    <th>Download</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+        <tr>
+            <td><a href="dev/">Dev (main)</a></td>
+            <td><a href="dev/bedrock-php-dev.zip">Download</a></td>
+            <td>Current</td>
+        </tr>
+            </tbody>
+        </table>
+        
+        <div class="description">
+            <p>Bedrock PHP is an <strong>operational standard</strong> for building, deploying, and running PHP applications in production.</p>
+            <p>It is intentionally restrictive. Its goal is to define a <strong>safe, boring, repeatable baseline</strong> that:</p>
+            <ul>
+                <li>reduces decision fatigue</li>
+                <li>minimizes accidental complexity</li>
+                <li>survives team and context changes</li>
+                <li>remains understandable months or years later</li>
+            </ul>
+            <p>If Bedrock PHP feels limiting, that is by design.</p>
+        </div>
+        
+        <div class="links">
+            <a href="https://github.com/anomalyco/bedrock-php">View on GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
