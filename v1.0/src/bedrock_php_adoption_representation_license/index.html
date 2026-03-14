@@ -1,0 +1,1023 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Operational standard for building, deploying, and running PHP applications in production">
+      
+      
+      
+        <link rel="canonical" href="https://indy2kro.github.io/bedrock-php/src/bedrock_php_adoption_representation_license/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Bedrock PHP - Bedrock PHP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bedrock-php" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bedrock PHP" class="md-header__button md-logo" aria-label="Bedrock PHP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bedrock PHP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bedrock PHP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bedrock PHP" class="md-nav__button md-logo" aria-label="Bedrock PHP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bedrock PHP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1_purpose_and_scope/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1: Purpose & Scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2_adoption_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Adoption Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3_core_values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Core Values (Operational)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4_declared_defaults/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Declared Defaults
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5_deployment_infrastructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5: Deployment & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6_configuration_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Configuration & State
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter7_observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter8_performance_scaling_limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 8: Performance & Scaling Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter9_security_posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 9: Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter10_maintenance_decommissioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 10: Maintenance & Decommissioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter11_when_to_leave/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 11: When to Leave Bedrock PHP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter12_version_policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 12: Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adoption-representation-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adoption &amp; Representation License
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adoption &amp; Representation License">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose-of-this-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose of This Document
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-reading-vs-adoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Reading vs Adoption
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Reading vs Adoption">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-reading-and-informal-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Reading and Informal Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-formal-adoption-and-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Formal Adoption and Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-the-license-grants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What the License Grants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-license-scope-and-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. License Scope and Tiers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. License Scope and Tiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-individual-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Individual License
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-team-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Team License
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-organization-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Organization License
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-versioning-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Versioning and Duration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-deviation-and-honesty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Deviation and Honesty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-prohibited-uses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Prohibited Uses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-enforcement-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Enforcement Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-relationship-to-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Relationship to Profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Relationship to Profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#closing-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Closing Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="bedrock-php">Bedrock PHP<a class="headerlink" href="#bedrock-php" title="Permanent link">&para;</a></h1>
+<h2 id="adoption-representation-license">Adoption &amp; Representation License<a class="headerlink" href="#adoption-representation-license" title="Permanent link">&para;</a></h2>
+<h3 id="purpose-of-this-document">Purpose of This Document<a class="headerlink" href="#purpose-of-this-document" title="Permanent link">&para;</a></h3>
+<p>This document defines the <strong>terms under which individuals, teams, and organizations may formally adopt, represent adherence to, and integrate Bedrock PHP</strong> into their projects.</p>
+<p>Its goals are to:</p>
+<ul>
+<li>keep Bedrock PHP <strong>publicly readable and accessible</strong></li>
+<li>provide a <strong>clear, tangible right</strong> when a license is purchased</li>
+<li>distinguish between <em>informal use</em> and <em>formal adoption</em></li>
+<li>create a <strong>sustainable funding model</strong> for the maintenance of Bedrock PHP</li>
+</ul>
+<p>This document is normative.</p>
+<hr />
+<h2 id="1-reading-vs-adoption">1. Reading vs Adoption<a class="headerlink" href="#1-reading-vs-adoption" title="Permanent link">&para;</a></h2>
+<h3 id="11-reading-and-informal-use">1.1 Reading and Informal Use<a class="headerlink" href="#11-reading-and-informal-use" title="Permanent link">&para;</a></h3>
+<p>Anyone may, without license:</p>
+<ul>
+<li>read Bedrock PHP documents</li>
+<li>download Bedrock PHP documents</li>
+<li>learn from or be inspired by Bedrock PHP</li>
+<li>apply ideas privately or experimentally</li>
+<li>reference Bedrock PHP casually in discussion</li>
+</ul>
+<p>No permission or payment is required for these activities.</p>
+<hr />
+<h3 id="12-formal-adoption-and-representation">1.2 Formal Adoption and Representation<a class="headerlink" href="#12-formal-adoption-and-representation" title="Permanent link">&para;</a></h3>
+<p>A <strong>license is required</strong> to:</p>
+<ul>
+<li>state that a project, team, or organization <em>adheres to</em> Bedrock PHP</li>
+<li>treat Bedrock PHP as an internal or external standard</li>
+<li>pin a specific Bedrock PHP version as a baseline</li>
+<li>include Bedrock PHP in onboarding, policy, or compliance material</li>
+<li>represent alignment with Bedrock PHP to stakeholders, clients, or auditors</li>
+</ul>
+<p>Formal adoption is an <strong>organizational act</strong>, not a personal belief.</p>
+<hr />
+<h2 id="2-what-the-license-grants">2. What the License Grants<a class="headerlink" href="#2-what-the-license-grants" title="Permanent link">&para;</a></h2>
+<p>A valid Adoption &amp; Representation License grants the right to:</p>
+<ul>
+<li>formally adopt a specific Bedrock PHP release</li>
+<li>state "We follow Bedrock PHP vX.Y" internally or externally</li>
+<li>redistribute the licensed release internally</li>
+<li>train teams against the licensed release</li>
+<li>retain the licensed release for historical reference</li>
+</ul>
+<p>The license does <strong>not</strong> grant:</p>
+<ul>
+<li>certification or approval</li>
+<li>endorsement by the Bedrock PHP authors</li>
+<li>immunity from deviation</li>
+<li>permission to misrepresent compliance</li>
+</ul>
+<hr />
+<h2 id="3-license-scope-and-tiers">3. License Scope and Tiers<a class="headerlink" href="#3-license-scope-and-tiers" title="Permanent link">&para;</a></h2>
+<p>Licenses are scoped by <strong>who is allowed to represent adoption</strong>.</p>
+<h3 id="31-individual-license">3.1 Individual License<a class="headerlink" href="#31-individual-license" title="Permanent link">&para;</a></h3>
+<p>Grants:</p>
+<ul>
+<li>formal adoption for personal projects</li>
+<li>use in learning, teaching, or evaluation</li>
+<li>reference during consulting work</li>
+</ul>
+<p>Restrictions:</p>
+<ul>
+<li>does not allow representing client or employer adherence</li>
+</ul>
+<hr />
+<h3 id="32-team-license">3.2 Team License<a class="headerlink" href="#32-team-license" title="Permanent link">&para;</a></h3>
+<p>Grants:</p>
+<ul>
+<li>formal adoption by a single team or product</li>
+<li>internal redistribution within that team</li>
+<li>inclusion in team documentation and onboarding</li>
+</ul>
+<p>Restrictions:</p>
+<ul>
+<li>does not extend to unrelated teams or products</li>
+</ul>
+<hr />
+<h3 id="33-organization-license">3.3 Organization License<a class="headerlink" href="#33-organization-license" title="Permanent link">&para;</a></h3>
+<p>Grants:</p>
+<ul>
+<li>formal adoption across an entire organization</li>
+<li>internal redistribution without team-level restriction</li>
+<li>inclusion in company-wide standards</li>
+</ul>
+<p>Restrictions:</p>
+<ul>
+<li>limited to a single legal entity</li>
+<li>does not permit external redistribution</li>
+</ul>
+<hr />
+<h2 id="4-versioning-and-duration">4. Versioning and Duration<a class="headerlink" href="#4-versioning-and-duration" title="Permanent link">&para;</a></h2>
+<p>Licenses are issued <strong>per Bedrock PHP release</strong>.</p>
+<ul>
+<li>Each release is frozen and versioned</li>
+<li>A license applies to the specific release it references</li>
+<li>Organizations may continue using a licensed release indefinitely</li>
+</ul>
+<p>A new release requires:</p>
+<ul>
+<li>an explicit decision to adopt</li>
+<li>a new license</li>
+</ul>
+<p>Licenses do not imply:</p>
+<ul>
+<li>automatic upgrades</li>
+<li>continuous updates</li>
+<li>evergreen maintenance</li>
+</ul>
+<hr />
+<h2 id="5-deviation-and-honesty">5. Deviation and Honesty<a class="headerlink" href="#5-deviation-and-honesty" title="Permanent link">&para;</a></h2>
+<p>Licensed adopters may deviate from Bedrock PHP.</p>
+<p>However:</p>
+<ul>
+<li>deviations must be documented internally</li>
+<li>representation must remain honest</li>
+<li>partial or selective adoption must not be misrepresented as full adherence</li>
+</ul>
+<p>The license grants the <strong>right to represent alignment</strong>, not perfection.</p>
+<hr />
+<h2 id="6-prohibited-uses">6. Prohibited Uses<a class="headerlink" href="#6-prohibited-uses" title="Permanent link">&para;</a></h2>
+<p>Without explicit permission, license holders must not:</p>
+<ul>
+<li>claim certification or endorsement</li>
+<li>use Bedrock PHP branding to imply approval</li>
+<li>resell or sublicense the standard</li>
+<li>incorporate Bedrock PHP into competing standards</li>
+</ul>
+<hr />
+<h2 id="7-enforcement-philosophy">7. Enforcement Philosophy<a class="headerlink" href="#7-enforcement-philosophy" title="Permanent link">&para;</a></h2>
+<p>This license is enforced through:</p>
+<ul>
+<li>clarity, not surveillance</li>
+<li>good faith, not audits</li>
+<li>alignment, not punishment</li>
+</ul>
+<p>Bedrock PHP relies on professional integrity, not legal intimidation.</p>
+<hr />
+<h2 id="8-relationship-to-profiles">8. Relationship to Profiles<a class="headerlink" href="#8-relationship-to-profiles" title="Permanent link">&para;</a></h2>
+<p>This license governs <strong>adoption of the Bedrock PHP core standard</strong>.</p>
+<p>Profiles:</p>
+<ul>
+<li>are optional</li>
+<li>are licensed separately</li>
+<li>may require additional licenses for commercial use</li>
+</ul>
+<p>Adopting Bedrock PHP does not require using any profile.</p>
+<hr />
+<h3 id="closing-statement">Closing Statement<a class="headerlink" href="#closing-statement" title="Permanent link">&para;</a></h3>
+<p>Bedrock PHP is free to read so that it can remain universal.</p>
+<p>Licensing exists to make <strong>formal adoption explicit, durable, and sustainable</strong>.</p>
+<p>If this license becomes a source of friction or fear, it has failed its purpose.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
