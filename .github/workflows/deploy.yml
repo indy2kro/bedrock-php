@@ -85,8 +85,8 @@ jobs:
       - name: Create zip archive
         run: |
           cd site/${{ steps.paths.outputs.VERSION_DIR }}
-          zip -r ../bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip . -x "*.html" "*.xml" "*.js" "*.css" "*.txt" "*.woff*" "*.ttf" "search*" "site*" "__pycache__/*"
-        shell: bash
+          zip -r bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip . -x "*.html" "*.xml" "*.js" "*.css" "*.txt" "*.woff*" "*.ttf" "search*" "site*" "__pycache__/*"
+          cp bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip ../
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
