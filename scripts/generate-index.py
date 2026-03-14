@@ -107,7 +107,7 @@ If Bedrock PHP feels limiting, that is by design.
 
 
 def generate_index_html(versions: list[tuple[str, str, str]], current_version: str) -> str:
-    """Generate standalone HTML version picker with dark theme."""
+    """Generate standalone HTML version picker with light theme."""
     
     # Determine status for current version
     def get_status_display(version_dir: str, status: str) -> str:
@@ -144,101 +144,122 @@ def generate_index_html(versions: list[tuple[str, str, str]], current_version: s
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bedrock PHP - Select a Version</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <style>
-        :root {{
-            --pico-background-color: #242937;
-            --pico-card-background-color: #2a2f3e;
-            --pico-card-border-color: #3a4055;
-            --pico-color: #e4e4e7;
-            --pico-muted-color: #a1a1aa;
-            --pico-primary: #6366f1;
-            --pico-primary-hover: #818cf8;
+        * {{
+            box-sizing: border-box;
         }}
         body {{
-            background-color: #1a1d29;
-            color: #e4e4e7;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 700px;
+            margin: 50px auto;
             padding: 20px;
+            background: #f8f9fa;
+            color: #212529;
         }}
         .container {{
-            max-width: 700px;
-            width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }}
         h1 {{
-            color: #e4e4e7;
+            color: #212529;
             margin-bottom: 5px;
             text-align: center;
+            font-size: 2.5em;
         }}
         .subtitle {{
-            color: #a1a1aa;
+            color: #6c757d;
             text-align: center;
             margin-bottom: 30px;
+            font-size: 1.1em;
         }}
         table {{
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            background: #2a2f3e;
             border-radius: 8px;
             overflow: hidden;
+            border: 1px solid #dee2e6;
         }}
         th, td {{
             padding: 14px 16px;
             text-align: left;
-            border-bottom: 1px solid #3a4055;
+            border-bottom: 1px solid #dee2e6;
         }}
         th {{
-            background: #1f2330;
-            color: #a1a1aa;
+            background: #f8f9fa;
+            color: #495057;
             font-weight: 600;
             font-size: 0.85em;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }}
         td {{
-            color: #e4e4e7;
+            color: #212529;
         }}
         tr:last-child td {{
             border-bottom: none;
         }}
+        tr:hover td {{
+            background: #f8f9fa;
+        }}
         a {{
-            color: #818cf8;
+            color: #6366f1;
             text-decoration: none;
+            font-weight: 500;
         }}
         a:hover {{
-            color: #a5b4fc;
+            color: #4f46e5;
             text-decoration: underline;
         }}
         .description {{
-            color: #a1a1aa;
+            color: #6c757d;
             line-height: 1.7;
             margin-top: 30px;
-            padding: 20px;
-            background: #2a2f3e;
+            padding: 24px;
+            background: #f8f9fa;
             border-radius: 8px;
+            font-size: 0.95em;
         }}
         .description strong {{
-            color: #e4e4e7;
+            color: #212529;
         }}
         .description ul {{
             margin: 10px 0;
         }}
         .description li {{
-            color: #a1a1aa;
+            color: #6c757d;
         }}
         .links {{
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid #3a4055;
+            border-top: 1px solid #dee2e6;
             text-align: center;
         }}
         .links a {{
-            color: #818cf8;
+            color: #6366f1;
+            font-weight: 500;
+        }}
+        .version-badge {{
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }}
+        .badge-current {{
+            background: #d1fae5;
+            color: #065f46;
+        }}
+        .badge-wip {{
+            background: #fef3c7;
+            color: #92400e;
+        }}
+        .badge-previous {{
+            background: #e5e7eb;
+            color: #374151;
         }}
     </style>
 </head>
@@ -273,7 +294,7 @@ def generate_index_html(versions: list[tuple[str, str, str]], current_version: s
         </div>
         
         <div class="links">
-            <a href="https://github.com/anomalyco/bedrock-php">View on GitHub</a>
+            <a href="https://indy2kro.github.io/bedrock-php/">View Documentation</a>
         </div>
     </div>
 </body>
