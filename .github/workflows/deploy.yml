@@ -84,6 +84,10 @@ jobs:
 
       - name: Create zip archive
         run: |
+          # Copy markdown source files to the version directory (for zip download)
+          mkdir -p site/${{ steps.paths.outputs.VERSION_DIR }}/src
+          cp -r docs/src/* site/${{ steps.paths.outputs.VERSION_DIR }}/src/
+          # Create zip from the version directory (includes both built site + source markdown)
           cd site/${{ steps.paths.outputs.VERSION_DIR }}
           zip -r bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip . -x "*.html" "*.xml" "*.js" "*.css" "*.txt" "*.woff*" "*.ttf" "search*" "site*" "__pycache__/*"
           cp bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip ../
@@ -101,5 +105,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip"
+          artifacts: "site/bedrock-php-${{ steps.paths.outputs.VERSION_NAME }}.zip"
           allowUpdates: true

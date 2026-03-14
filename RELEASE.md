@@ -6,11 +6,13 @@ This document describes how to create and publish a new version of Bedrock PHP.
 
 ## Overview
 
-Bedrock PHP uses a tag-based release model:
+Bedrock PHP uses a tag-based release model with GitHub-native releases:
 
 - `main` branch: Development version (deployed to `/dev/`)
 - Tags (e.g., `v1.0`): Releases (deployed to `/v1.0/`)
-- GitHub Action automatically: builds docs, creates zip, deploys to Pages, creates Release
+- GitHub Action automatically: builds docs, creates zip, deploys to Pages, creates GitHub Release
+
+Releases are created automatically via the `ncipollo/release-action` — you never create them manually.
 
 ---
 
@@ -49,6 +51,28 @@ The GitHub Action will automatically:
 ### 3. Update Documentation (Optional)
 
 After the release, you may want to update any external documentation or links that reference the old version.
+
+---
+
+## How It Works
+
+The release process uses **GitHub-native releases** created automatically via the [`ncipollo/release-action`](https://github.com/ncipollo/release-action) GitHub Action:
+
+1. When you push a tag (`v1.0`), the `deploy.yml` workflow triggers
+2. The workflow builds the documentation and creates a zip archive
+3. After deploying to GitHub Pages, the workflow uses `ncipollo/release-action` to:
+   - Create a GitHub Release from the tag
+   - Attach the zip archive (`bedrock-php-v1.0.zip`) to the release
+   - Generate release notes (if configured)
+
+This means you never create releases manually in GitHub's UI. The tag is the source of truth.
+
+### Updating a Release
+
+If you need to update an existing release (e.g., fix a typo in release notes, re-upload a zip):
+
+1. Push the same tag again: `git push origin v1.0 --tags`
+2. The workflow will update the existing release (configured with `allowUpdates: true`)
 
 ---
 
