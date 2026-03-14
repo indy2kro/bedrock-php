@@ -55,6 +55,18 @@ def discover_versions(sitegh_pages_path: str) -> list[tuple[str, str, str]]:
 def generate_mkdocs_index(versions: list[tuple[str, str, str]], current_version: str) -> str:
     """Generate the index.md content for MkDocs (without version table)."""
     
+    # Dev versions don't have release zips
+    if current_version == "dev":
+        download_section = ""
+    else:
+        download_section = f"""
+
+---
+
+## Downloads
+
+- [bedrock-php-{current_version}.zip](./bedrock-php-{current_version}.zip) — Source markdown files"""
+    
     # Build full index content - no version table, just intro
     index_content = f"""# Bedrock PHP — v1.0
 
@@ -88,13 +100,7 @@ If Bedrock PHP feels limiting, that is by design.
 - [Chapter 9: Security Posture](src/chapter9_security_posture.md)
 - [Chapter 10: Maintenance & Decommissioning](src/chapter10_maintenance_decommissioning.md)
 - [Chapter 11: When to Leave Bedrock PHP](src/chapter11_when_to_leave.md)
-- [Chapter 12: Version Policy](src/chapter12_version_policy.md)
-
----
-
-## Downloads
-
-- [bedrock-php-{current_version}.zip](./bedrock-php-{current_version}.zip) — Source markdown files
+- [Chapter 12: Version Policy](src/chapter12_version_policy.md){download_section}
 """
     
     return index_content
@@ -118,9 +124,15 @@ def generate_index_html(versions: list[tuple[str, str, str]], current_version: s
         status_display = get_status_display(version_dir, status)
         zip_name = f"bedrock-php-{version_dir}.zip"
         
+        # Dev versions don't have release zips
+        if version_dir == "dev":
+            download_link = "—"
+        else:
+            download_link = f"<a href=\"{version_dir}/{zip_name}\">Download</a>"
+        
         rows.append(f"""        <tr>
             <td><a href="{version_dir}/">{version_display}</a></td>
-            <td><a href="{version_dir}/{zip_name}">Download</a></td>
+            <td>{download_link}</td>
             <td>{status_display}</td>
         </tr>""")
     
@@ -187,6 +199,9 @@ def generate_index_html(versions: list[tuple[str, str, str]], current_version: s
             font-size: 0.85em;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+        }}
+        td {{
+            color: #e4e4e7;
         }}
         tr:last-child td {{
             border-bottom: none;

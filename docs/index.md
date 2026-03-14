@@ -36,4 +36,4 @@ If Bedrock PHP feels limiting, that is by design.
 
 ## Downloads
 
-- [bedrock-php-dev.zip](./bedrock-php-dev.zip) — Source markdown files
+- [bedrock-php-v1.0.zip](./bedrock-php-v1.0.zip) — Source markdown files

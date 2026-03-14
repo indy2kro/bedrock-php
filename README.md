@@ -1,5 +1,7 @@
 # Bedrock PHP — v1.0
 
+[**View Documentation**](https://indy2kro.github.io/bedrock-php/)
+
 ## What This Is
 
 Bedrock PHP is an **operational standard** for building, deploying, and running PHP applications in production.
