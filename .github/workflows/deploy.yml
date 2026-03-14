@@ -73,6 +73,9 @@ jobs:
           SITE_GH_PAGES_PATH: sitegh-pages
         run: python scripts/generate-index.py
 
+      - name: Replace version placeholder in generated index
+        run: sed -i 's/VERSION_PLACEHOLDER/${{ steps.paths.outputs.VERSION_NAME }}/g' docs/index.md
+
       - name: Build MkDocs to version directory
         run: mkdocs build -d site/${{ steps.paths.outputs.VERSION_DIR }}
 
